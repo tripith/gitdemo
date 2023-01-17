@@ -4,12 +4,13 @@
 
 
 //get element by class name 
-const item = document.getElementsByClassName("list-group-item");
+const li = document.getElementsByClassName("list-group-item");
+console.log("li");
 
-console.log(item[2]);// 
-item[2].style.backgroundColor = "green";
-item[2].style.fontWeight = "bold";
 
-for (var i = 0; i < item.length; i++){
-    item[i].style.backgroundColor = "grey";
+for (var i = 0; i < li.length; i++){
+    li[i].style.backgroundColor = "red";
+    li[i].style.fontWeight = "bold";
 }
+
+li[2].style.backgroundColor ="green";
