@@ -3,14 +3,16 @@
 //header.style.borderBottom = "solid 12px  #000"; 
 
 
-//get element by class name 
-const li = document.getElementsByClassName("list-group-item");
-console.log("li");
+//get element by class name  item = document.querySelector(`.list-group-item`);
 
 
-for (var i = 0; i < li.length; i++){
-    li[i].style.backgroundColor = "red";
-    li[i].style.fontWeight = "bold";
+var odd = document.querySelectorAll("li:nth-child(odd)");
+var even = document.querySelectorAll("li:nth-child(even)");
+for (var i = 0; i < odd.length; i++){
+    odd[i].style.backgroundColor = "blue";
+
 }
+for (var i = 0; i < even.length; i++){
+    even[i].style.backgroundColor = "green";
 
-li[2].style.backgroundColor ="green";
+}
