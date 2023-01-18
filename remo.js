@@ -1,58 +1,52 @@
-var listItem = document.querySelector("#items");
-//parent node 
-//console.log(listItem.parentNode);
-//listItem.parentElement.style.backgroundColor = "red";
-//console.log(listItem.parentNode.parentNode);
+var form = document.getElementById("addForm");
 
-//parentElement 
-//behave same as parent node
-console.log(listItem.parentElement);
-listItem.parentElement.style.backgroundColor = "grey";
-console.log(listItem.parentElement.parentElement);
+var itemList = document.getElementById('items');
+//form submit event
+form.addEventListener("submit", addItem);
 
-//lastElementChild
-listItem.lastElementChild.textContent = "lastchild";
+//delete event
+itemList.addEventListener('click',removeItem);
 
-//lastChild
-console.log(listItem.lastChild);// showing text 
+function addItem(e) {
+        e.preventDefault();
+        
 
-//create child
+        //get input value 
+        var newItem = document.getElementById("item").value; // value == hello
+        
+        //create new li element
+        var li = document.createElement('li'); // create another li for hello
+        //Add class
+        li.className = 'list-group-item'; // given ssame class name as li
 
+        //add text node with input value
+        li.appendChild(document.createTextNode(newItem)); // add hello into li
+        
+        var deltBtn =document.createElement('button'); // create a new dlt bunton
+        // newly created li consist hello on it
 
-//child node 
-//console.log(listItem.childNodes);
-console.log(listItem.children);
-//acess a specfic child
-console.log(listItem.children[1].textContent = "hello->text 1");
-listItem.children[2].style.backgroundColor = "coral";
+        //add class to del button
+//having same class as given to dlt button
+        deltBtn.className = 'btn btn-danger btn-sm float-right delete';
 
-//firstChild-->fristElementChild
-console.log(listItem.firstElementChild);
-listItem.firstElementChild.textContent = "hellochild";
+        // append text node
+       // add dlt text into li
+        deltBtn.appendChild(document.createTextNode('X'));
 
-// nextsibling 
-//console.log(listItem.nextElementSibling);
+        //append button to li
 
-//pervious sibling
-console.log(listItem.previousElementSibling);
-listItem.parentElement.style.background = "red";
+        li.appendChild(deltBtn);
 
-//creat Element
-  // create a div 
-  var newDiv = document.createElement('div');
-  //add class
-  newDiv.className = 'hellod';
-  //add id
-  newDiv.id = 'helloD';
-  //set attributr
-  newDiv.setAttribute('title','hello Div');
+        //append li to itemlist
 
-  //create text node 
-  var newDivText = document.createTextNode('hello world');
-// add text to div
-  newDiv.appendChild(newDivText);
-  var putdiv = document.querySelector("header .container");
-  var h1 = document.querySelector('header h1');
-  console.log(newDiv);
-  newDiv.style.fontSize = "20px";
-  putdiv.insertBefore(newDiv, h1);
+        itemList.appendChild(li);
+       
+}
+function removeItem(e){
+    if(e.target.classList.contains('delete')){
+        if(confirm('are u sure')){
+         var li = e.target.parentElement;
+         itemList.removeChild(li);
+        }
+    }
+}
