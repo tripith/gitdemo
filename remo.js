@@ -3,6 +3,7 @@ var form = document.getElementById("addForm");
 var itemList = document.getElementById('items');
 //form submit event
 form.addEventListener("submit", addItem);
+//form.addEventListener("submit", saveToLocalStorage);
 
 //delete event
 itemList.addEventListener('click',removeItem);
@@ -43,15 +44,22 @@ function addItem(e) {
         //append li to itemlist
 
         itemList.appendChild(li);
-       
+
+        localStorage.setItem('itemList',newItem);       
 }
+
 function removeItem(e){
     if(e.target.classList.contains('delete')){
         if(confirm('are u sure')){
          var li = e.target.parentElement;
-         itemList.removeChild(li);
+         
+         itemList.removeChild(li); 
+        
+                 
         }
     }
+
+    
 }
 
 //function filter 
@@ -69,4 +77,6 @@ Array.from(items).forEach(function(item){
       item.style.display = 'none';
     }
   });
+
 }
+
