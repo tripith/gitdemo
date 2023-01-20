@@ -55,15 +55,27 @@ function showDeatils(obj){
   parent.appendChild(child);
 
 const deletButton = document.createElement('input');
+
 deletButton.type = 'button';
-deletButton.value = 'delete'
+deletButton.value = 'delete';
+
+const editBtn = document.createElement('input');
+editBtn.type = "button";
+editBtn.value = 'Edit';
+
+
+
 deletButton.onclick = () => {
   localStorage.removeItem(obj.email);
-  
   parent.removeChild(child);
+
+  document.getElementById("usernameInputTag").value = obj.name;
+  document.getElementById("emailInputTag").value = obj.email;
+  document.getElementById("phonenuberInputTag").value = obj.phonenum;
   
 }
 child.appendChild(deletButton);
+child.appendChild(editBtn);
 parent.appendChild(child);
 
 }
