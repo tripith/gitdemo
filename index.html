@@ -53,8 +53,20 @@ function showDeatils(obj){
   const child  = document.createElement('li');
   child.textContent = obj.name+">>"+obj.email + ">>"+ obj.phonenum;
   parent.appendChild(child);
-}
 
+const deletButton = document.createElement('input');
+deletButton.type = 'button';
+deletButton.value = 'delete'
+deletButton.onclick = () => {
+  localStorage.removeItem(obj.email);
+  
+  parent.removeChild(child);
+  
+}
+child.appendChild(deletButton);
+parent.appendChild(child);
+
+}
 
   </script>
 </body>
