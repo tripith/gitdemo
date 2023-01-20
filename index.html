@@ -8,30 +8,54 @@
 </head>
 <body>
 
-  <form id="addform">
+  <form onsubmit="local(event)">
     <label>Name</label>
-    <input type = "text", name="username"/>
+    <input type = "text" name="username"/>
+    <br>
     <label>email</label>
-    <input type="text", name = 'emailid'/>
+    <input type="text" name = 'emailid'/><br>
+
     <label>phone number</label>
-    <input type="tel",name = "phonenumber" />
-    <button>submit</button>
+    <input type="tel" name = "phonenumber" />
+
+    <button>Submit</button>
 
   </form>
-  <script>
-    const form = document.getElementById('addform');
-    form.addEventListener('submit',additem);
-    function additem(event){
-      event.preventDefault();
-      var name=event.target.username.value;
-      var email = event.target.emailid.value;
-    //  var phonenum = event.target.phonenumber.value;
 
-      localStorage.setItem('name', name);
-      localStorage.setItem('add',email);
-     // localStorage.setItem("addr",phonenum);
-      
-    }
+  <ul id="listid"></ul>
+
+  <script>
+  function local(event){
+    event.preventDefault();
+    var name = event.target.username.value;
+    var email = event.target.emailid.value;
+    var phonenum = event.target.phonenumber.value;
+
+    localStorage.setItem("name", name);
+    localStorage.setItem("Email",email);
+    localStorage.setItem('number', phonenum);
+
+  
+  const obj ={
+    name,
+    email,phonenum
+
+  }
+
+
+  localStorage.setItem('details',JSON.stringify(obj));
+  showDeatils(obj);
+  
+  
+}
+function showDeatils(obj){
+  const parent = document.getElementById("listid");
+  const child  = document.createElement('li');
+  child.textContent = obj.name+">>"+obj.email + ">>"+ obj.phonenum;
+  parent.appendChild(child);
+}
+
+
   </script>
 </body>
 </html>
